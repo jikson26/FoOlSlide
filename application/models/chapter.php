@@ -93,6 +93,11 @@ class Chapter extends DataMapper
 		'editor' => array(
 			'rules' => array('required'),
 			'label' => 'Editor'
+		),
+		'release_date' => array(
+			'rules' => array(),
+			'label' => 'Release Date',
+			'type' => 'datetime'
 		)
 	);
 
@@ -140,6 +145,8 @@ class Chapter extends DataMapper
 		$this->validation['hidden']['label'] = _('Visibility');
 		$this->validation['hidden']['help'] = _('Hide the chapter from public view.');
 		$this->validation['hidden']['text'] = _('Hidden');
+		$this->validation['release_date']['help'] = _('Date the chapter will be visible to public.');
+		$this->validation['release_date']['label'] = _('Release Date');
 	}
 
 
@@ -176,7 +183,10 @@ class Chapter extends DataMapper
 
 		// Check if the user is allowed to see protected chapters.
 		if (!$CI->tank_auth->is_allowed())
+		{
 			$this->where('hidden', 0);
+			$this->where('release_date < UTC_TIMESTAMP()');
+		}
 
 		$result = parent::get($limit, $offset);
 
@@ -208,7 +218,10 @@ class Chapter extends DataMapper
 
 		// Check if the user is allowed to see protected chapters.
 		if (!$CI->tank_auth->is_allowed())
+		{
 			$this->where('hidden', 0);
+			$this->where('release_date < UTC_TIMESTAMP()');
+		}
 
 		/**
 		 * @todo figure out why those variables don't get unset... it would be

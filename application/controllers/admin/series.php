@@ -76,6 +76,7 @@ class Series extends Admin_Controller
 
 			$chapter = new Chapter($chapter_id);
 			$data["chapter"] = $chapter;
+			$data["chapter"]->release_date = $data["chapter"]->release_date ? str_replace(' ', 'T', $data["chapter"]->release_date) : '';
 
 			$team = new Team();
 			$teams = $team->get_teams($chapter->team_id, $chapter->joint_id);
@@ -202,6 +203,7 @@ class Series extends Admin_Controller
 			if ($this->input->post())
 			{
 				$chapter = new Chapter();
+				
 				if ($chapter->add($this->input->post()))
 				{
 					$subchapter = is_int($chapter->subchapter) ? $chapter->subchapter : 0;

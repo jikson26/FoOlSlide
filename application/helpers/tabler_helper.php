@@ -654,3 +654,11 @@ if (!function_exists('prevnext'))
 
 
 }
+
+if (!function_exists('form_date'))
+{
+	function form_datetime($column)
+	{
+		return '<input type="datetime-local" id="' . $column['name'] . '" name="' . $column['name'] . '" value="' . $column['value'] . '" class="datetime-local">';
+	}
+}

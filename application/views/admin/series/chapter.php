@@ -22,6 +22,8 @@ $this->buttoner[] = array(
 	?>
 </div>
 
+<script src="<?php echo site_url(); ?>assets/admin/datetime.js?v=<?php echo FOOLSLIDE_VERSION ?>"></script>
+
 <br/>
 
 <div class="table">

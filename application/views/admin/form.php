@@ -14,3 +14,5 @@
 	echo form_close();
 ?>
 </div>
+
+<script src="<?php echo site_url(); ?>assets/admin/datetime.js?v=<?php echo FOOLSLIDE_VERSION ?>"></script>
